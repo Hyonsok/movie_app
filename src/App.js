@@ -1,17 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import axios from 'axios';
 
 //class component
 //to use state, make class component
 class App extends React.Component {
   state = {
     isLoading :  true,
-    moves : []
+    movies : []
   };
+  getMovies = async () => {
+    const movies = await axios.get("https://yts.mx/api/v2/list_movies.json"); //to get api from the link, use axios
+  }
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({isLoading:false})
-    }, 6000)
+    this.getMovies();
   }
   render() {
     const {isLoading} = this.state;
